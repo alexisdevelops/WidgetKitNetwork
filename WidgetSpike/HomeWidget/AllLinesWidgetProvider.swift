@@ -30,7 +30,7 @@ struct Provider: TimelineProvider {
         StatusService.getStatus(client: NetworkClient()) { updates in
             let entry = SimpleEntry(date: Date(), line: nil, updates: updates)
             // Refresh the data every two minutes:
-            let expiryDate = Calendar.current.date(byAdding: .minute, value: 2, to: Date()) ?? Date()
+            let expiryDate = Calendar.current.date(byAdding: .minute, value: 5, to: Date()) ?? Date()
             let timeline = Timeline(entries: [entry], policy: .after(expiryDate))
             completion(timeline)
         }
@@ -64,8 +64,7 @@ struct SimpleEntry: TimelineEntry {
 //    }
 //}
 
-@main
-struct HomeWidget: Widget {
+struct AllLinesWidget: Widget {
     public var body: some WidgetConfiguration {
         StaticConfiguration(kind: "All Lines",
                             provider: Provider()) { entry in

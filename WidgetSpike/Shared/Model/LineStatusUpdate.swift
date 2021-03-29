@@ -13,10 +13,11 @@ public struct LineStatusUpdate: Identifiable, Decodable {
         case line = "name"
         case statuses = "lineStatuses"
     }
+
     public let id: String
-    let line: Line
-    let statuses: [StatusUpdate]
-    
+    public let line: Line
+    public let statuses: [StatusUpdate]
+
     public init(line: Line) {
         self.id = line.rawValue.lowercased()
         self.line = line

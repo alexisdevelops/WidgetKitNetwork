@@ -18,6 +18,12 @@ public struct StatusService {
         runStatusRequest(.lineStatus, on: client, completion: completion)
     }
 
+    public static func getStatus(client: NetworkClient,
+                                 for line: Line,
+                                 completion: (([LineStatusUpdate]) -> Void)? = nil) {
+        runStatusRequest(.statusForLine(line), on: client, completion: completion)
+    }
+
     private static func runStatusRequest(_ request: URLRequest,
                                          on client: NetworkClient,
                                          completion: (([LineStatusUpdate]) -> Void)? = nil) {
